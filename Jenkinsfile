@@ -22,6 +22,9 @@ pipeline {
         }
 
         stage('Test') {
+            environment {
+                LARAVEL_BYPASS_ENV_CHECK = '1'
+            }
             steps {
                 bat 'npm test'
             }
