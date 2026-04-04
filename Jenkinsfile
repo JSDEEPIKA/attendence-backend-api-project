@@ -2,25 +2,38 @@ pipeline {
     agent any
 
     stages {
-       stage('Checkout') {
+        stage('Checkout') {
             steps {
-                git branch: 'feature', url:'https://github.com/JSDEEPIKA/attendence-backend-api-project.git'
+                git branch: 'feature', url: 'https://github.com/JSDEEPIKA/attendence-backend-api-project.git'
             }
-       }
-       stage('Build') {
+        }
+
+        stage('Install Dependencies') {
             steps {
                 bat 'npm install'
+                bat 'npm install --save-dev vitest'
+            }
+        }
+
+        stage('Build') {
+            steps {
                 bat 'npm run build'
             }
-       }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'npm test'
+            }
+        }
     }
+
     post {
         success {
-            echo 'Build succeeded!'
+            echo 'Pipeline completed successfully!'
         }
         failure {
-            echo 'Build failed!'
+            echo 'Pipeline failed!'
         }
     }
 }
-
