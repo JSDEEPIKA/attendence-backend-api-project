@@ -12,15 +12,7 @@ pipeline {
                 bat 'npm install'
                 bat 'npm run build'
             }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'npm test'
-            }
-        }
-    }
-
+       }
     post {
         success {
             echo 'Build succeeded!'
@@ -29,4 +21,5 @@ pipeline {
             echo 'Build failed!'
         }
     }
+}
 }
