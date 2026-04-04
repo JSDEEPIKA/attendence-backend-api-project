@@ -13,6 +13,7 @@ pipeline {
                 bat 'npm run build'
             }
        }
+    }
     post {
         success {
             echo 'Build succeeded!'
@@ -22,4 +23,4 @@ pipeline {
         }
     }
 }
-}
+
