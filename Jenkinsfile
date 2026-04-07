@@ -9,16 +9,16 @@ pipeline {
             }
         }
 
-        stage('Setup Environment') {
+        stage('Install PHP Dependencies') {
             steps {
-                bat 'copy .env.example .env'
-                bat 'php artisan key:generate'
+                bat 'composer install'   // ← MUST come first
             }
         }
 
-        stage('Install PHP Dependencies') {
+        stage('Setup Environment') {
             steps {
-                bat 'composer install'
+                bat 'copy .env.example .env'
+                bat 'php artisan key:generate'  // ← now vendor/ exists
             }
         }
 
