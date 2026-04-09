@@ -11,14 +11,14 @@ pipeline {
 
         stage('Install PHP Dependencies') {
             steps {
-                bat 'composer install'   // ← MUST come first
+                bat 'composer install'   
             }
         }
 
         stage('Setup Environment') {
             steps {
                 bat 'copy .env.example .env'
-                bat 'php artisan key:generate'  // ← now vendor/ exists
+                bat 'php artisan key:generate'  
             }
         }
 
